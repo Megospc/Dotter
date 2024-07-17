@@ -10,6 +10,8 @@ namespace Simulation {
 
         float a = 0.266;
         float b = 1.0;
+        float y = 1.0;
+        float d = 1.0;
 
         void clamp() {
  
@@ -54,8 +56,10 @@ namespace Simulation {
     }
 
     void Simulation::step(int attractor) {
-        float a = params->a;
-        float b = params->b;
+        float A = params->a;
+        float B = params->b;
+        float Y = params->y;
+        float D = params->d;
 
         Rand::Seed(1);
 
@@ -72,13 +76,18 @@ namespace Simulation {
                 float x1, y1;
 
                 if (attractor == 0) {
-                    x1 = b*y1+GumowskiF(x, a);
-                    y1 = GumowskiF(x1+1.0, a)-x;
+                    x1 = B*y+GumowskiF(x, A);
+                    y1 = GumowskiF(x1+1.0, A)-x;
                 }
 
                 if (attractor == 1) {
-                    x1 = y*std::sin(x*y/b)+std::cos(a*x-y);
-                    y1 = x+std::sin(y)/b;
+                    x1 = y*std::sin(A*y)+y*std::cos(A*x);
+                    y1 = std::sin(y)/B;
+                }
+
+                if (attractor == 2) {
+                    x1 = std::sin(A*y)+Y*std::cos(A*x);
+                    y1 = std::sin(B*x)+D*std::cos(B*y);
                 }
 
                 positions[i].x = x1;
