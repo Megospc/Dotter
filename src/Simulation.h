@@ -37,7 +37,7 @@ namespace Simulation {
                 free(positions);
             }
 
-            void step();
+            void step(int);
 
             uint frame;
 
@@ -53,7 +53,7 @@ namespace Simulation {
         return a*x+(2.0*(1.0-a)*x*x)/((1.0+x*x)*(1.0+x*x));
     }
 
-    void Simulation::step() {
+    void Simulation::step(int attractor) {
         float a = params->a;
         float b = params->b;
 
@@ -66,16 +66,23 @@ namespace Simulation {
             for (int k = 1; k < count; k++) {
                 int i = k+j*count;
 
-                float x1 = positions[i-1].x;
-                float y1 = positions[i-1].y;
+                float x = positions[i-1].x;
+                float y = positions[i-1].y;
 
-                float x, y;
+                float x1, y1;
 
-                x = b*y1+GumowskiF(x1, a);
-                y = GumowskiF(x+1.0, a)-x1;
+                if (attractor == 0) {
+                    x1 = b*y1+GumowskiF(x, a);
+                    y1 = GumowskiF(x1+1.0, a)-x;
+                }
 
-                positions[i].x = x;
-                positions[i].y = y;
+                if (attractor == 1) {
+                    x1 = y*std::sin(x*y/b)+std::cos(a*x-y);
+                    y1 = x+std::sin(y)/b;
+                }
+
+                positions[i].x = x1;
+                positions[i].y = y1;
             }
         }
 

@@ -64,10 +64,17 @@ namespace Interface {
     float particlesize = 1.0;
     int theme = 0;
     int themecount = 2;
+    int attractor = 0;
+    int attractorcount = 2;
 
     cstr themenames[] = {
         "Black-White",
         "Red-White"
+    };
+
+    cstr attractornames[] = {
+        "Gumowski-Mira",
+        "Bedhead"
     };
 
     float GetScale(int scale = interfacescale) {
@@ -496,7 +503,7 @@ namespace Interface {
         ImVec2 buttonMedium = Scale(ImVec2(80.0, 18.0));
         ImVec2 buttonDouble = Scale(ImVec2(165.0, 18.0));
 
-        simulation->step();
+        simulation->step(attractor);
 
         static float colorTone[3] = { 1.0, 1.0, 1.0 };
 
@@ -598,6 +605,7 @@ namespace Interface {
                 ImGui::SetNextItemWidth(Scale(100.0));
                 ImGui::SliderFloat("Particle size", &particlesize, 0.1, 2.0, "%.1f");
 
+                ImGui::SetNextItemWidth(Scale(100.0));
                 ImGui::Combo("Theme", &theme, themenames, themecount, 8);
 
                 if (ImGui::Checkbox("Post-processing", &postproc)) recreateRender();
@@ -682,10 +690,21 @@ namespace Interface {
 
             SmallOffset("settings-pre-params");
 
-            ImGui::SetNextItemWidth(Scale(60.0));
-            DragFloat("A parameter", &params.a, 0.001, -0.3, 0.3, "%.3f");
-            ImGui::SetNextItemWidth(Scale(60.0));
-            DragFloat("B parameter", &params.b, 0.001, 0.8, 1.0, "%.3f");
+            ImGui::SetNextItemWidth(Scale(100.0));
+            ImGui::Combo("Attractor", &attractor, attractornames, attractorcount, 8);
+
+            if (attractor == 0) {
+                ImGui::SetNextItemWidth(Scale(60.0));
+                DragFloat("A parameter", &params.a, 0.001, -0.3, 0.3, "%.3f");
+                ImGui::SetNextItemWidth(Scale(60.0));
+                DragFloat("B parameter", &params.b, 0.001, 0.8, 1.0, "%.3f");
+            }
+            if (attractor == 1) {
+                ImGui::SetNextItemWidth(Scale(60.0));
+                DragFloat("A parameter", &params.a, 0.001, -1.0, 1.0, "%.3f");
+                ImGui::SetNextItemWidth(Scale(60.0));
+                DragFloat("B parameter", &params.b, 0.001, -1.0, 1.0, "%.3f");
+            }
 
             if (ImGui::Button("Restart", buttonMedium)) start();
             KeyHint("[R]");
