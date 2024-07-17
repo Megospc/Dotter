@@ -294,6 +294,7 @@ namespace Interface {
         str += KeyVal("wheel", wheelsensitivity);
         str += KeyVal("width", windowwidth);
         str += KeyVal("height", windowheight);
+        str += KeyVal("theme", theme);
         str += KeyVal("interface", scalestr(interfacescale));
         str += KeyVal("pp-reducing", ppReducing);
 
@@ -330,6 +331,7 @@ namespace Interface {
         starred = false;
 
         laststar = 0;
+        theme = 0;
 
         creatorname = "";
 
@@ -364,6 +366,7 @@ namespace Interface {
                 if (data.key == "pp-reducing") ppReducing = stoi(data.val);
                 if (data.key == "width") windowwidth = stoi(data.val);
                 if (data.key == "height") windowheight = stoi(data.val);
+                if (data.key == "theme") theme = stoi(data.val);
                 if (data.key == "interface") interfacescale = strscale(data.val);
 
                 if (data.key == "creator") creatorname = data.val;
