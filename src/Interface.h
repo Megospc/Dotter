@@ -549,8 +549,6 @@ namespace Interface {
 
         if (ImGui::Button("Quit", buttonDouble)) escaping = true;
 
-        ImGui::Text("Time steps: %d", simulation->frame);
-
         SmallOffset("pre-headers");
 
         ImGui::Checkbox("Performance", &windowperformance);
@@ -735,6 +733,8 @@ namespace Interface {
 
             ImGui::SetNextItemWidth(Scale(60.0));
             DragFloat("Range", &params.range, 0.02, 0.1, 10.0, "%.1f");
+
+            SmallOffset("settings-pre-btn");
 
             if (ImGui::Button("Reset parameters", buttonDouble)) {
                 if (attractor == 0) params.a = 0.266, params.b = 1.0, params.range = 3.0;

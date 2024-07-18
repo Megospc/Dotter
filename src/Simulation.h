@@ -34,8 +34,6 @@ namespace Simulation {
 
                 positions = MALLOC(vec2, count*repeat);
                 mousePositions = MALLOC(vec2, count);
-
-                frame = 0;
             }
 
             ~Simulation() {
@@ -44,8 +42,6 @@ namespace Simulation {
             }
 
             void step(int, vecpp::vec2, bool);
-
-            uint frame;
 
             Params* params;
 
@@ -142,7 +138,5 @@ namespace Simulation {
                 mousePositions[i].y = y1;
             }
         }
-
-        frame++;
     }
 }
