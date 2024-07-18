@@ -23,6 +23,8 @@ void main() {
     if (uTheme == -1) fBaseColor = vec3(1.0, 0.0, 0.0);
     if (uTheme == 2) fBaseColor = vec3(1.0, val, val);
     if (uTheme == -2) fBaseColor = vec3(0.0, 0.0, 1.0);
+    if (uTheme == 3) fBaseColor = vec3(1.0-val*0.75, 0.0, val);
+    if (uTheme == -3) fBaseColor = vec3(1.0, 1.0, 1.0);
 
     fTexPos = (aVertex*uSize+aPosition+uCamera)*uZoom/vec2(uRatio, 1.0);
 

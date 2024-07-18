@@ -63,13 +63,14 @@ namespace Interface {
 
     float particlesize = 1.0;
     int theme = 0;
-    int themecount = 2;
+    int themecount = 3;
     int attractor = 0;
     int attractorcount = 4;
 
     cstr themenames[] = {
         "Black-White",
-        "Red-White"
+        "Red-White",
+        "Red-Blue"
     };
 
     cstr attractornames[] = {
