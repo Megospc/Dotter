@@ -120,7 +120,7 @@ namespace Interface {
     }
 
     vec2 mousesim() {
-        return (getsimpos(mousepos)+1.0-camera)/2.0;
+        return getsimpos(mousepos)-camera;
     }
 
     vec2 prevmousesim(0.0, 0.0);
@@ -732,7 +732,14 @@ namespace Interface {
                 DragFloat("d", &params.d, 0.002, -3.0, 3.0, "%.3f");
             }
 
-            if (ImGui::Button("Restart", buttonMedium)) start();
+            if (ImGui::Button("Reset parameters", buttonDouble)) {
+                if (attractor == 0) params.a = 0.266, params.b = 1.0;
+                if (attractor == 1) params.a = 0.653, params.b = 0.734;
+                if (attractor == 2) params.a = 1.7, params.b = 1.8, params.y = 0.9, params.d = 0.4;
+                if (attractor == 3) params.a = -1.966, params.b = 2.879, params.y = 0.765, params.d = 0.744;
+            }
+
+            if (ImGui::Button("Restart", buttonDouble)) start();
             KeyHint("[R]");
 
             ImGui::End();
