@@ -6,6 +6,7 @@ Version: 1.0.0 (17.07.2024)
 Inspired by [complexity-explorables](https://complexity-explorables.org).
 
 ## ✨ Features
++ 4 strange attractors
 + Supporting Ubuntu and Windows
 + Fullscreen mode
 + Style customizing

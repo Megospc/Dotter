@@ -176,7 +176,7 @@ namespace Interface {
 
             vec2 d = pos2-pos1;
 
-            camera += d*2.0;
+            camera += d;
         }
     }
 
@@ -544,7 +544,7 @@ namespace Interface {
 
         ImGui::PushFont(fontMedium[interfacescale]);
 
-        ImGui::Begin("Forcell");
+        ImGui::Begin("Dotter");
 
         if (ImGui::Button("Quit", buttonDouble)) escaping = true;
 
