@@ -13,6 +13,8 @@ namespace Simulation {
         float y = 1.0;
         float d = 1.0;
 
+        float range = 3.0;
+
         void clamp() {
  
         }
@@ -66,9 +68,12 @@ namespace Simulation {
 
         Rand::Seed(1);
 
+        float rangex = params->range;
+        float rangey = params->range;
+
         for (uint j = 0; j < repeat; j++) {
-            positions[j*count].x = Rand::Float()*Rand::Sign();
-            positions[j*count].y = Rand::Float()*Rand::Sign();
+            positions[j*count].x = Rand::Range(-rangex, rangex);
+            positions[j*count].y = Rand::Range(-rangey, rangey);
 
             for (int k = 1; k < count; k++) {
                 int i = k+j*count;

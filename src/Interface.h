@@ -733,11 +733,14 @@ namespace Interface {
                 DragFloat("d", &params.d, 0.002, -3.0, 3.0, "%.3f");
             }
 
+            ImGui::SetNextItemWidth(Scale(60.0));
+            DragFloat("Range", &params.range, 0.02, 0.1, 10.0, "%.1f");
+
             if (ImGui::Button("Reset parameters", buttonDouble)) {
-                if (attractor == 0) params.a = 0.266, params.b = 1.0;
-                if (attractor == 1) params.a = 0.653, params.b = 0.734;
-                if (attractor == 2) params.a = 1.7, params.b = 1.8, params.y = 0.9, params.d = 0.4;
-                if (attractor == 3) params.a = -0.966, params.b = 2.879, params.y = 0.765, params.d = 0.744;
+                if (attractor == 0) params.a = 0.266, params.b = 1.0, params.range = 3.0;
+                if (attractor == 1) params.a = 0.653, params.b = 0.734, params.range = 1.0;
+                if (attractor == 2) params.a = 1.7, params.b = 1.8, params.y = 0.9, params.d = 0.4, params.range = 1.0;
+                if (attractor == 3) params.a = -0.966, params.b = 2.879, params.y = 0.765, params.d = 0.744, params.range = 1.0;
             }
 
             if (ImGui::Button("Restart", buttonDouble)) start();
