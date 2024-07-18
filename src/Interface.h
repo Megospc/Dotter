@@ -30,6 +30,7 @@ namespace Interface {
     bool fullscreen = false;
     bool confignoupdate = false;
     bool starred = false;
+    bool showmouse = false;
 
     bool windowperformance = false;
     bool windowappearance = false;
@@ -280,6 +281,7 @@ namespace Interface {
         if (fullscreen) str += KeyVal("fullscreen", "");
         if (postproc) str += KeyVal("postprocessing", "");
         if (zoomtocursor) str += KeyVal("zoom-to-mouse", "");
+        if (showmouse) str += KeyVal("show-mouse-orbit", "");
         if (starred) str += KeyVal("starred", "");
 
         str += KeyVal("last-star", std::to_string(laststar));
@@ -351,6 +353,7 @@ namespace Interface {
                 if (data.key == "fullscreen") fullscreen = true;
                 if (data.key == "postprocessing") postproc = true;
                 if (data.key == "zoom-to-mouse") zoomtocursor = true;
+                if (data.key == "show-mouse-orbit") showmouse = true;
                 if (data.key == "starred") starred = true;
 
                 if (data.key == "last-star") laststar = stol(data.val);
@@ -507,7 +510,7 @@ namespace Interface {
         ImVec2 buttonMedium = Scale(ImVec2(80.0, 18.0));
         ImVec2 buttonDouble = Scale(ImVec2(165.0, 18.0));
 
-        simulation->step(attractor);
+        simulation->step(attractor, mousesim(), showmouse);
 
         static float colorTone[3] = { 1.0, 1.0, 1.0 };
 
@@ -517,6 +520,7 @@ namespace Interface {
             render->render(
                 camera, zoom(),
                 particlesize, theme,
+                showmouse,
                 (escaping ? vec3(0.5):vec3(1.0))*vec3(colorTone[0], colorTone[1], colorTone[2]),
                 escaping
             );
@@ -606,6 +610,8 @@ namespace Interface {
             ImGui::Checkbox("Rendering", &rendering);
 
             if (rendering) {
+                ImGui::Checkbox("Show mouse orbit", &showmouse);
+
                 ImGui::SetNextItemWidth(Scale(100.0));
                 ImGui::SliderFloat("Particle size", &particlesize, 0.1, 2.0, "%.1f");
 

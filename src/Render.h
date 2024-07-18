@@ -129,6 +129,7 @@ namespace Render {
             void render(
                 vec2 camera, float zoom,
                 float particlesize, int theme,
+                bool showmouse,
                 vec3 clrmul, bool strongblur
             ) {
                 if (!ok) return;
@@ -163,7 +164,7 @@ namespace Render {
                 glUniform1f(programParticle->uniform("uRatio"), scrRatio);
                 glUniform1f(programParticle->uniform("uSize"), particlesize*0.01);
                 glUniform1i(programParticle->uniform("uCount"), simulation->count*simulation->repeat);
-                glUniform1i(programParticle->uniform("uTheme"), theme);
+                glUniform1i(programParticle->uniform("uTheme"), theme+1);
 
                 particleVAO->bind();
 
@@ -172,6 +173,16 @@ namespace Render {
                 positionBuffer->unbind();
 
                 glDrawArraysInstanced(GL_TRIANGLES, 0, 6, simulation->count*simulation->repeat);
+
+                if (showmouse) {
+                    glUniform1i(programParticle->uniform("uTheme"), -(theme+1));
+
+                    positionBuffer->bind();
+                    positionBuffer->data(simulation->mousePositions, sizeof(float)*2*simulation->count, GL_DYNAMIC_DRAW);
+                    positionBuffer->unbind();
+
+                    glDrawArraysInstanced(GL_TRIANGLES, 0, 6, simulation->count);
+                }
 
                 particleVAO->unbind();
 
