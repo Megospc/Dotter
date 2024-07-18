@@ -24,7 +24,6 @@ namespace Interface {
     ImFont* fontMedium[4];
 
     bool escaping = false;
-    bool pause = false;
     bool rendering = true;
     bool postproc = false;
     bool fullscreen = false;
@@ -234,8 +233,6 @@ namespace Interface {
         if (action == GLFW_PRESS) {
             if (key == ImGuiKey_Escape) escaping = true;
 
-            if (key == ImGuiKey_Space || key == ImGuiKey_P) pause = !pause;
-
             if (key == ImGuiKey_O || key == ImGuiKey_I) camera = vec2(0.0, 0.0);
             if (key == ImGuiKey_O || key == ImGuiKey_0) zoomsteps = 0.0;
 
@@ -332,6 +329,7 @@ namespace Interface {
         windowbuildinfo = false;
         zoomtocursor = false;
         starred = false;
+        showmouse = false;
 
         laststar = 0;
         theme = 0;
@@ -547,10 +545,7 @@ namespace Interface {
 
         ImGui::Begin("Forcell");
 
-        if (ImGui::Button(pause ? "Continue":"Pause", buttonMedium)) pause = !pause;
-        ImGui::SameLine();
-        if (ImGui::Button("Quit", buttonMedium)) escaping = true;
-        KeyHint("[space]", 20.0);
+        if (ImGui::Button("Quit", buttonDouble)) escaping = true;
 
         ImGui::Text("Time steps: %d", simulation->frame);
 
