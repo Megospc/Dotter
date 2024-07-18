@@ -65,7 +65,7 @@ namespace Interface {
     int theme = 0;
     int themecount = 2;
     int attractor = 0;
-    int attractorcount = 3;
+    int attractorcount = 4;
 
     cstr themenames[] = {
         "Black-White",
@@ -75,7 +75,8 @@ namespace Interface {
     cstr attractornames[] = {
         "Gumowski-Mira",
         "Bedhead",
-        "Clifford"
+        "Clifford",
+        "Fractal Dream"
     };
 
     float GetScale(int scale = interfacescale) {
@@ -719,6 +720,16 @@ namespace Interface {
                 DragFloat("y", &params.y, 0.002, 0.0, 1.9, "%.3f");
                 ImGui::SetNextItemWidth(Scale(60.0));
                 DragFloat("d", &params.d, 0.002, 0.0, 1.9, "%.3f");
+            }
+            if (attractor == 3) {
+                ImGui::SetNextItemWidth(Scale(60.0));
+                DragFloat("a", &params.a, 0.003, -3.0, 3.0, "%.3f");
+                ImGui::SetNextItemWidth(Scale(60.0));
+                DragFloat("b", &params.b, 0.003, -3.0, 3.0, "%.3f");
+                ImGui::SetNextItemWidth(Scale(60.0));
+                DragFloat("y", &params.y, 0.002, -3.0, 3.0, "%.3f");
+                ImGui::SetNextItemWidth(Scale(60.0));
+                DragFloat("d", &params.d, 0.002, -3.0, 3.0, "%.3f");
             }
 
             if (ImGui::Button("Restart", buttonMedium)) start();

@@ -93,6 +93,11 @@ namespace Simulation {
                     y1 = std::sin(B*x)+D*std::cos(B*y);
                 }
 
+                if (attractor == 3) {
+                    x1 = std::sin(B*y)+Y*std::sin(B*x);
+                    y1 = std::sin(A*x)+D*std::cos(A*y);
+                }
+
                 positions[i].x = x1;
                 positions[i].y = y1;
             }
