@@ -12,6 +12,7 @@ Inspired by [complexity-explorables](https://complexity-explorables.org).
 + Style customizing
 
 ## 📸 Screenshots
+<img src="images/screen2.png" width="600">
 <img src="images/screen1.png" width="600">
 
 ## 💿 Pre-compiled Binaries
