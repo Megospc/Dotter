@@ -736,7 +736,7 @@ namespace Interface {
                 if (attractor == 0) params.a = 0.266, params.b = 1.0;
                 if (attractor == 1) params.a = 0.653, params.b = 0.734;
                 if (attractor == 2) params.a = 1.7, params.b = 1.8, params.y = 0.9, params.d = 0.4;
-                if (attractor == 3) params.a = -1.966, params.b = 2.879, params.y = 0.765, params.d = 0.744;
+                if (attractor == 3) params.a = -0.966, params.b = 2.879, params.y = 0.765, params.d = 0.744;
             }
 
             if (ImGui::Button("Restart", buttonDouble)) start();

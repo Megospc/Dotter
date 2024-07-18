@@ -84,8 +84,8 @@ namespace Simulation {
                 }
 
                 if (attractor == 1) {
-                    x1 = y*std::sin(A*y)+y*std::cos(A*x);
-                    y1 = std::sin(y)/B;
+                    x1 = y*std::sin(x*y/B)+std::cos(A*x-y);
+                    y1 = x+std::sin(y)/B;
                 }
 
                 if (attractor == 2) {
@@ -95,7 +95,7 @@ namespace Simulation {
 
                 if (attractor == 3) {
                     x1 = std::sin(B*y)+Y*std::sin(B*x);
-                    y1 = std::sin(A*x)+D*std::cos(A*y);
+                    y1 = std::sin(A*x)+D*std::sin(A*y);
                 }
 
                 positions[i].x = x1;
@@ -119,8 +119,8 @@ namespace Simulation {
                 }
 
                 if (attractor == 1) {
-                    x1 = y*std::sin(A*y)+y*std::cos(A*x);
-                    y1 = std::sin(y)/B;
+                    x1 = y*std::sin(x*y/B)+std::cos(A*x-y);
+                    y1 = x+std::sin(y)/B;
                 }
 
                 if (attractor == 2) {
@@ -130,9 +130,9 @@ namespace Simulation {
 
                 if (attractor == 3) {
                     x1 = std::sin(B*y)+Y*std::sin(B*x);
-                    y1 = std::sin(A*x)+D*std::cos(A*y);
+                    y1 = std::sin(A*x)+D*std::sin(A*y);
                 }
-                
+
                 mousePositions[i].x = x1;
                 mousePositions[i].y = y1;
             }
