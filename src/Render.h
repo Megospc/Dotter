@@ -47,7 +47,7 @@ namespace Render {
                     programPost1 = GL::LoadProgram(
                         "shaders/filltex-vertex.glsl",
                         "shaders/post1-fragment.glsl"
-                    , "render");
+                    , "post1");
 
                     if (!programPost1->isOk()) goto unsuccess;
 
@@ -56,7 +56,7 @@ namespace Render {
                     programPost2 = GL::LoadProgram(
                         "shaders/filltex-vertex.glsl",
                         "shaders/post2-fragment.glsl"
-                    , "render");
+                    , "post2");
 
                     if (!programPost2->isOk()) goto unsuccess;
 
